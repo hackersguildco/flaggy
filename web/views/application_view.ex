@@ -3,6 +3,8 @@ defmodule Flaggy.ApplicationView do
 
   def image_url(user) do
     Image.url({user.image, user})
+    |> String.split("?")
+    |> hd
   end
 
 end
