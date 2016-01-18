@@ -24,7 +24,7 @@ config :flaggy, Flaggy.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 config :flaggy,
-  tmp_dir: "/app/tmp/",
+  tmp_dir: "/tmp/",
   root_path: "/app/"
 # Configure your database
 config :flaggy, Flaggy.Repo,
