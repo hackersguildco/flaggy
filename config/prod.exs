@@ -39,6 +39,11 @@ config :ex_aws,
   access_key_id: System.get_env("AWS_KEY_ID"),
   secret_access_key: System.get_env("AWS_ACCESS_KEY")
 
+config :flaggy, Facebook,
+  client_id: System.get_env("FB_CLIENT_ID"),
+  client_secret: System.get_env("FB_CLIENT_SECRET"),
+  redirect_uri: System.get_env("FB_REDIRECT")
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
