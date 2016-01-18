@@ -42,6 +42,8 @@ defmodule Flaggy.ProcessPhoto do
     new_file_url = "#{@tmp_dir}#{user.fb_id}_new.jpeg"
     {size, _} = System.cmd("convert", ~w(-ping -format '%wx%h^' #{file_url} info:-))
     System.cmd("convert", ~w(#{file_url} #{@flag_path} -compose softlight -resize #{String.replace(size, "'", "")} -gravity center -composite -quality 100 demo.jpg))
+    IO.puts "Files in tmp"
+    IO.inspect File.ls @tmp_dir
     File.read!(new_file_url)
     {user, new_file_url}
   end
