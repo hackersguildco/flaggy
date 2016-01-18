@@ -1,10 +1,10 @@
 <html>
 <head>
-  <title>Your Website Title</title>
+  <title><%= @user.name %> se ha unido al #paro</title>
     <!-- You can use Open Graph tags to customize link previews.
     Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
   <meta property="og:title" content="<%= @user.name %> se ha unido al #paro" />
-  <meta property="og:url" content="<%= user_url(@conn, :show, @user)%>" />
+  <meta property="og:url" content="<%= image_url(@user) %>" />
   <meta property="og:description" content="Te has unido al paro #yoparo" />
   <meta property="og:image" content="<%= image_url(@user) %>" />
   <meta property="og:image:secure_url" content="<%= image_url(@user) %>" />
