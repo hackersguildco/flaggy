@@ -13,11 +13,31 @@ use Mix.Config
 # which you typically run after static files are built.
 config :flaggy, Flaggy.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
+  url: [scheme: "https", host: "guarded-mountain-7509.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :flaggy, Flaggy.Endpoint,
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
+
+
+# Configure your database
+config :flaggy, Flaggy.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: System.get_env("DATABASE_URL"),
+  pool_size: 20
+
+config :arc,
+  bucket: System.get_env("AWS_BUCKET"),
+  virtual_host: false,
+  arc_storage: Arc.Storage.S3
+
+config :ex_aws,
+  access_key_id: System.get_env("AWS_KEY_ID"),
+  secret_access_key: System.get_env("AWS_ACCESS_KEY")
 
 # ## SSL Support
 #
@@ -62,4 +82,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"
