@@ -3,7 +3,7 @@ defmodule Flaggy.ProcessPhoto do
   alias Flaggy.Repo
   alias Flaggy.User
 
-  @flag_path "#{System.cwd}/web/static/assets/images/flag.png"
+  @flag_path "#{Application.get_env(:flaggy, :root_path)}web/static/assets/images/flag.png"
   @tmp_dir Application.get_env(:flaggy, :tmp_dir)
 
   def process(user) do

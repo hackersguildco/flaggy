@@ -43,7 +43,8 @@ config :flaggy, Flaggy.Repo,
   pool_size: 10
 
 config :flaggy,
-  tmp_dir: System.tmp_dir
+  tmp_dir: System.tmp_dir,
+  root_path: "#{System.cwd}/"
 
 import_config "arc.exs"
 import_config "oauth.exs"
