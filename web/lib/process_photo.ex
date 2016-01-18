@@ -41,7 +41,7 @@ defmodule Flaggy.ProcessPhoto do
   defp add_flag({user, file_url}) do
     new_file_url = "#{@tmp_dir}#{user.fb_id}_new.jpeg"
     {size, _} = System.cmd("convert", ~w(-ping -format '%wx%h^' #{file_url} info:-))
-    System.cmd("convert", ~w(#{file_url} #{@flag_path} -compose softlight -resize #{String.replace(size, "'", "")} -gravity center -composite -quality 100 demo.jpg))
+    System.cmd("convert", ~w(#{file_url} #{@flag_path} -compose softlight -resize #{String.replace(size, "'", "")} -gravity center -composite -quality 100 #{new_file_url}))
     IO.puts "Files in tmp"
     IO.inspect File.ls @tmp_dir
     File.read!(new_file_url)
