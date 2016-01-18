@@ -52,6 +52,7 @@ defmodule Flaggy.Web do
       import Flaggy.Router.Helpers
       import Flaggy.ErrorHelpers
       import Flaggy.Gettext
+      import Flaggy.ApplicationView
     end
   end
 

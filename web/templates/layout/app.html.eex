@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <meta property="og:image"         content="http://caloxvet.com/wp-content/uploads/2014/11/bGL.jpg" />
+
     <title>Hello Flaggy!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
@@ -20,6 +22,15 @@
           </ul>
         </nav>
         <span class="logo"></span>
+        <%= if @current_user do %>
+          <h2>Welcome, <%= @current_user.name %>!</h2>
+          <%= link "Logout", to: auth_path(@conn, :delete), method: :delete %>
+        <% else %>
+          <a class="btn btn-primary btn-lg" href="<%= auth_path @conn, :index, "facebook" %>">
+           <i class="fa fa-facebook"></i>
+           Sign in with Facebook
+         </a>
+        <% end %>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

@@ -1,0 +1,13 @@
+<html>
+<head>
+  <title>Your Website Title</title>
+    <!-- You can use Open Graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+  <meta property="og:url"           content="<%= user_url(@conn, :show, @user)%>" />
+  <meta property="og:description"   content="Te has unido al paro #yoparo" />
+  <meta property="og:image"         content="<%= image_url(@user) %>" />
+</head>
+<body>
+<img src="<%= image_url(@user) %>"/>
+</body>
+</html>

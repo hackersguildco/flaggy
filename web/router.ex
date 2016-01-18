@@ -18,6 +18,8 @@ defmodule Flaggy.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    post "/upload", PageController, :upload
+    resources "/users", UserController, only: [:show]
   end
 
   scope "/auth", Flaggy do

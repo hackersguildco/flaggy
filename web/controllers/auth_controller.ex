@@ -1,5 +1,6 @@
 defmodule Flaggy.AuthController do
   use Flaggy.Web, :controller
+  alias Flaggy.User
 
   @doc """
   This action is reached via `/auth/:provider` and redirects to the OAuth2 provider
@@ -29,6 +30,16 @@ defmodule Flaggy.AuthController do
     # Request the user's data with the access token
     user = get_user!(provider, token)
 
+    {:ok, user_saved} =
+      case Repo.get(User, user[:fb_id]) do
+        nil ->
+          changeset = User.changeset(%User{}, user)
+          Repo.insert(changeset)
+        user_found ->
+          changeset = User.changeset(user_found, user)
+          Repo.update(changeset)
+      end
+
     # Store the user in the session under `:current_user` and redirect to /.
     # In most cases, we'd probably just store the user's ID that can be used
     # to fetch from the database. In this case, since this example app has no
@@ -36,8 +47,12 @@ defmodule Flaggy.AuthController do
     #
     # If you need to make additional resource requests, you may want to store
     # the access token as well.
+
+    # Creates the image
+    user_updated = Flaggy.ProcessPhoto.process(user_saved)
+
     conn
-    |> put_session(:current_user, user)
+    |> put_session(:current_user, user_updated)
     |> put_session(:access_token, token.access_token)
     |> redirect(to: "/")
   end
@@ -50,6 +65,7 @@ defmodule Flaggy.AuthController do
 
   defp get_user!("facebook", token) do
     {:ok, %{body: user}} = OAuth2.AccessToken.get(token, "/me", fields: "id,name")
-    %{name: user["name"], avatar: "https://graph.facebook.com/#{user["id"]}/picture"}
+    %{fb_id: user["id"], name: user["name"], avatar: "https://graph.facebook.com/#{user["id"]}/picture?width200&height=200",
+    token: token.access_token}
   end
 end

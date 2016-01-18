@@ -17,9 +17,11 @@ defmodule Flaggy.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {Flaggy, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :oauth2]]
+    [
+      mod: {Flaggy, []},
+      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
+                    :phoenix_ecto, :postgrex, :ex_aws, :oauth2, :httpoison]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,6 +39,10 @@ defmodule Flaggy.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
+     {:arc, "~> 0.2.2"},
+     {:arc_ecto, "~> 0.3.0"},
+     {:ex_aws, "~> 0.4.10"},
+     {:httpoison, "~> 0.7"},
      {:oauth2, "~> 0.5"}]
   end
 
