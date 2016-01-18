@@ -23,7 +23,8 @@ config :logger, level: :info
 config :flaggy, Flaggy.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
-
+config :flaggy,
+  tmp_dir: "#{System.cwd}/tmp/"
 # Configure your database
 config :flaggy, Flaggy.Repo,
   adapter: Ecto.Adapters.Postgres,

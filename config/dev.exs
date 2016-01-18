@@ -42,5 +42,8 @@ config :flaggy, Flaggy.Repo,
   hostname: "localhost",
   pool_size: 10
 
+config :flaggy,
+  tmp_dir: System.tmp_dir
+
 import_config "arc.exs"
 import_config "oauth.exs"
