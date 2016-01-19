@@ -9,6 +9,7 @@
   <meta property="og:image" content="<%= image_url(@user) %>" />
   <meta property="og:image:secure_url" content="<%= image_url(@user) %>" />
   <meta property="og:image:type" content="image/jpeg" />
+  <meta property="fb:app_id" content="<%= fb_id %>" />
 </head>
 <body>
 <img src="<%= image_url(@user) %>"/>
