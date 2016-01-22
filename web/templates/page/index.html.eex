@@ -1,13 +1,13 @@
 <%= if @current_user do %>
-  <div>
-    <img src="<%= @current_user.avatar %>" height="100"/>
-    +
-    <img src='<%= static_path(@conn, "/images/flag.png") %>' height="100"/>
-    =
-    <img src="<%= image_url(@current_user) %>" height="100"/>
+  <h2>Comparte la imagen en tu Facebook</h2>
+  <div class="profile">
+    <img src="<%= @current_user.avatar %>"/>
+    <span class="symbol">+</span>
+    <img src='<%= static_path(@conn, "/images/flag.png") %>'/>
+    <span class="symbol">=</span>
+    <img src="<%= image_url(@current_user) %>"/>
   </div>
   <div id="fb-root">
-    <%= link "Upload", to: page_path(@conn, :upload), method: :post, class: "btn btn-danger" %>
     <div class="fb-share-button" data-href="<%= user_url(@conn, :show, @current_user) %>" data-layout="button_count"></div>
   </div>
   <div id="fb-root"></div>
@@ -18,4 +18,9 @@
     js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=893762397404299";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
+<% else %>
+  <a class="btn btn-primary btn-lg" href="<%= auth_path @conn, :index, "facebook" %>">
+   <i class="fa fa-facebook"></i>
+   Inicia con tu Facebook
+  </a>
 <% end%>

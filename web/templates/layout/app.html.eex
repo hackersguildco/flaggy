@@ -16,21 +16,19 @@
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
         <%= if @current_user do %>
           <h2>Welcome, <%= @current_user.name %>!</h2>
-          <%= link "Logout", to: auth_path(@conn, :delete), method: :delete %>
         <% else %>
-          <a class="btn btn-primary btn-lg" href="<%= auth_path @conn, :index, "facebook" %>">
-           <i class="fa fa-facebook"></i>
-           Sign in with Facebook
-         </a>
+          <h2>Cambia la foto de tu perfil</h2>
         <% end %>
+        <nav role="navigation">
+          <ul class="nav nav-pills pull-right">
+            <%= if @current_user do %>
+              <li><%= link "Logout", to: auth_path(@conn, :delete), method: :delete %></li>
+            <% end %>
+          </ul>
+        </nav>
+
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
