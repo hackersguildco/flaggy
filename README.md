@@ -11,7 +11,7 @@ To start the app:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-You can watch it in actio in [heroku](https://guarded-mountain-7509.herokuapp.com/)
+You can watch it in action in [heroku](https://guarded-mountain-7509.herokuapp.com/)
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
